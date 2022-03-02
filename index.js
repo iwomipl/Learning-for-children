@@ -1,0 +1,78 @@
+const container = document.querySelector('main');
+const starter = document.getElementById('starter');
+const czytanie = document.getElementById('Czytanie');
+// console.log(allCharacters);
+
+starter.addEventListener('click', () => {
+
+    getRandomEverything();
+    questionCount = 25;
+    container.innerHTML = createdHTML + restartButtonWord;
+    addingEvents();
+});
+
+czytanie.addEventListener('click', (event) => {
+    getRandomEverything('Czytanie');
+    questionCount = 50;
+    container.innerHTML = createdHTML + restartButtonCharacter;
+    addingEventsCharacter();
+});
+
+
+function addingEvents() {
+    const word = document.querySelector('#word');
+    const selecting = document.getElementById('selecting');
+    const submit = document.querySelector('#submit');
+
+
+    if (countOfWords < questionCount) {
+        submit.addEventListener('click', (event) => {
+            checkifAwnserIsRigth(selecting.value);
+            getRandomEverything();
+            container.innerHTML = `${generateSidebar()}`;
+            addingEvents();
+        })
+    } else {
+        container.innerHTML = generateContainerLastMessage('starter');
+    }
+    const starter = document.getElementById('starter');
+    starter.addEventListener('click', () => {
+        getRandomEverything();
+        restartEverything();
+        container.innerHTML = createdHTML + restartButtonWord;
+        addingEvents();
+    });
+}
+
+function addingEventsCharacter() {
+    const goodButton = document.getElementById('good');
+    const badButton = document.getElementById('bad');
+
+    if (countOfWords < questionCount) {
+        goodButton.addEventListener('click', () => {
+            points++;
+            countOfWords++;
+            getRandomEverything('Czytanie');
+            container.innerHTML = generateSidebarSpeech();
+            addingEventsCharacter();
+        })
+        badButton.addEventListener('click', () => {
+            getRandomEverything('Czytanie');
+            countOfWords++;
+            container.innerHTML = generateSidebarSpeech();
+            addingEventsCharacter();
+        })
+
+    } else {
+        container.innerHTML = 'tutaj wrzuciłem ten patent' + generateContainerLastMessage('newStart');
+    }
+    const newStart = document.getElementById('newStart');
+
+    newStart.addEventListener('click', () => {
+        getRandomEverything('Czytanie');
+        points = 0;
+        countOfWords = 0;
+        container.innerHTML = createdHTML + restartButtonCharacter;
+        addingEventsCharacter();
+    })
+}
