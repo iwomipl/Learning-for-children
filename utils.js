@@ -14,12 +14,14 @@ function getRandomCharacter() {
 
 function getRandomCharacters(){
     const randNum = getRandomNumber(switchCharacterOptions);
+    const randVowel = vowels[getRandomNumber(vowels.length)];
+    const randConsonant = consonants[getRandomNumber(consonants.length)];
     switch(randNum){
-        case 0: return vowels[getRandomNumber(vowels.length)];
-        case 1: return consonants[getRandomNumber(consonants.length)];
-        case 2: return vowels[getRandomNumber(vowels.length)]+consonants[getRandomNumber(consonants.length)];
-        // case 3: return vowels[getRandomNumber(vowels.length)]+vowels[getRandomNumber(vowels.length)];
-        default: return consonants[getRandomNumber(consonants.length)]+vowels[getRandomNumber(vowels.length)];
+        case 0: return randVowel;
+        case 1: return randConsonant;
+        case 2: return randVowel + randConsonant;
+        case 3: return randConsonant + randVowel;
+        default: return randVowel + randConsonant + randVowel;
     }
 }
 

@@ -5,4 +5,4 @@ let countOfWords = 0;
 let createdHTML = '';
 let addedParagraph = [];
 const maxParagraphLength = 25;
-const switchCharacterOptions = 5;
+const switchCharacterOptions = 7;
