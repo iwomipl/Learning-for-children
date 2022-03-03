@@ -59,6 +59,26 @@ function checkifAwnserIsRigth(awnser) {
     }
 }
 
+function checkifAwnserIsRigthMath(awnser) {
+
+    if (awnser === mathResult) {
+        points++;
+        countOfWords++;
+        if (awnser !== undefined || !Number.isNaN(awnser)) {
+            addedParagraph.push(`<p class="right">${awnser} to dobry wynik działania<strong> ${mathNumber1} ${mathSign} ${mathNumber2}</strong></p>`);
+        }
+        if (addedParagraph.length > maxParagraphLength) {
+            addedParagraph.shift();
+        }
+    } else {
+        countOfWords++;
+        addedParagraph.push(`<p class="wrong">${awnser} to zły wynik działania<strong>${mathNumber1} ${mathSign} ${mathNumber2}</strong>, dobry wynik to ${mathResult}</p>`);
+        if (addedParagraph.length > maxParagraphLength) {
+            addedParagraph.shift();
+        }
+    }
+}
+
 function getRandomEverything(keyWord) {
     if (keyWord === 'Czytanie') {
         tempObj = getRandomCharacters();
@@ -96,16 +116,20 @@ function mathSwitch() {
     switch (randNum) {
         case 0:
             mathResult = mathNumber1 + mathNumber2;
-            return '+';
+            mathSign = '+';
+            return;
         case 1:
             mathResult = substract();
-            return '-';
+            mathSign = '-';
+            return;
         case 2:
             mathResult = divide();
-            return '/';
+            mathSign = '/';
+            return;
         default:
             mathResult = multiply();
-            return '*';
+            mathSign = '*';
+            return;
     }
 }
 

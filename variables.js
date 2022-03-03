@@ -10,3 +10,4 @@ const maxMath = 6;
 let mathNumber1;
 let mathNumber2;
 let mathResult;
+let mathSign;

@@ -4,7 +4,6 @@ const czytanie = document.getElementById('Czytanie');
 const math = document.getElementById('math');
 
 starter.addEventListener('click', () => {
-
     getRandomEverything();
     questionCount = 25;
     container.innerHTML = createdHTML + restartButtonWord;
@@ -20,6 +19,7 @@ czytanie.addEventListener('click', (event) => {
 
 math.addEventListener('click', () => {
     getRandomEverything('math');
+    questionCount = 25;
     container.innerHTML = createdHTML + restartButtonWord;
     addingEventsMath();
 });
@@ -83,5 +83,22 @@ function addingEventsCharacter() {
 }
 
 function addingEventsMath() {
+    const selecting = document.getElementById('result');
+    const submit = document.querySelector('#submit');
 
+    if (countOfWords < questionCount) {
+        submit.addEventListener('click', (event) => {
+            if (Number.isNaN(Number(selecting.value))) {
+                return Error;
+            }
+
+            checkifAwnserIsRigthMath(Number(selecting.value));
+            getRandomEverything('math');
+            container.innerHTML = `${generateSidebar()}`;
+            addingEventsMath();
+
+        })
+    } else {
+        container.innerHTML = generateContainerLastMessage('starter');
+    }
 }

@@ -8,8 +8,8 @@ function createHTMLCharacter(character) {
     return generatedHTML;
 }
 
-function createHTMLMath(character) {
-    const generatedHTML = `${generatedHTMLMathStart}${mathNumber1} ${character} ${mathNumber2}= ${mathResult}${generatedHTMLMathEnd}`;
+function createHTMLMath() {
+    const generatedHTML = `${generatedHTMLMathStart}${mathNumber1} ${mathSign} ${mathNumber2}${generatedHTMLMathEnd}`;
     return generatedHTML;
 }
 

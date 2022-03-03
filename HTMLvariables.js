@@ -26,7 +26,7 @@ const generatedHTMLMathStart = `<div id=""headerDiv"><h1 id="word">`;
 const generatedHTMLMathEnd = `</h1></div>
 <form>
 <label>Jaki jest wynik tego działania?</label></br>
-<input type="number"/></br>
+<input type="number" id="result"/></br>
 <button id="submit">Wyślij</button>
 </form></br></hr>`;
 
