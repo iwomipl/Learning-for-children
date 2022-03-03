@@ -1,7 +1,7 @@
 const container = document.querySelector('main');
 const starter = document.getElementById('starter');
 const czytanie = document.getElementById('Czytanie');
-// console.log(allCharacters);
+const math = document.getElementById('math');
 
 starter.addEventListener('click', () => {
 
@@ -18,6 +18,11 @@ czytanie.addEventListener('click', (event) => {
     addingEventsCharacter();
 });
 
+math.addEventListener('click', () => {
+    getRandomEverything('math');
+    container.innerHTML = createdHTML + restartButtonWord;
+    addingEventsMath();
+});
 
 function addingEvents() {
     const word = document.querySelector('#word');
@@ -75,4 +80,8 @@ function addingEventsCharacter() {
         container.innerHTML = createdHTML + restartButtonCharacter;
         addingEventsCharacter();
     })
+}
+
+function addingEventsMath() {
+
 }

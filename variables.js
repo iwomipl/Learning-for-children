@@ -6,3 +6,7 @@ let createdHTML = '';
 let addedParagraph = [];
 const maxParagraphLength = 25;
 const switchCharacterOptions = 7;
+const maxMath = 6;
+let mathNumber1;
+let mathNumber2;
+let mathResult;

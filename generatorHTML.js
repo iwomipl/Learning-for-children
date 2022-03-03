@@ -8,6 +8,11 @@ function createHTMLCharacter(character) {
     return generatedHTML;
 }
 
+function createHTMLMath(character) {
+    const generatedHTML = `${generatedHTMLMathStart}${mathNumber1} ${character} ${mathNumber2}${generatedHTMLMathEnd}`;
+    return generatedHTML;
+}
+
 function finisherHeader() { 
     return `
 <h3>Uzyskanych Punktów: <strong>${points}</strong></h3>
