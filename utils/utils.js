@@ -104,7 +104,7 @@ function mathSwitch() {
             mathResult = divide();
             return '/';
         default:
-            mathResult = mathNumber1 * mathNumber2;
+            mathResult = multiply();
             return '*';
     }
 }
@@ -118,13 +118,26 @@ function substract() {
         return substract()
     }
 }
+
+function multiply() {
+    if (mathNumber1 !== 0 && mathNumber2 !== 0) {
+        return mathNumber1 * mathNumber2;
+    } else {
+        mathNumber1 = getRandomNumber(9);
+        mathNumber2 = getRandomNumber(9);
+        return multiply();
+    }
+}
 function divide() {
     if (mathNumber1 !== 0 && mathNumber2 !== 0) {
         mathNumber1 = mathNumber1 * mathNumber2;
         return mathNumber1 / mathNumber2;
-    }
-    else {
+    } else if (mathNumber1 === 0) {
+        mathNumber1 = getRandomNumber(9);
         mathNumber2 = getRandomNumber(9);
-        return divide()
+        return divide();
+    } else {
+        mathNumber2 = getRandomNumber(9);
+        return divide();
     }
 }

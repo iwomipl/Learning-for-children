@@ -9,7 +9,7 @@ function createHTMLCharacter(character) {
 }
 
 function createHTMLMath(character) {
-    const generatedHTML = `${generatedHTMLMathStart}${mathNumber1} ${character} ${mathNumber2}${generatedHTMLMathEnd}`;
+    const generatedHTML = `${generatedHTMLMathStart}${mathNumber1} ${character} ${mathNumber2}= ${mathResult}${generatedHTMLMathEnd}`;
     return generatedHTML;
 }
 
