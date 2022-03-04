@@ -26,6 +26,7 @@ math.addEventListener('click', () => {
 
 function addingEvents() {
     const word = document.querySelector('#word');
+    const reload = document.querySelector('#reload');
     const selecting = document.getElementById('selecting');
     const submit = document.querySelector('#submit');
 
@@ -47,9 +48,11 @@ function addingEvents() {
         container.innerHTML = createdHTML + restartButtonWord;
         addingEvents();
     });
+    reload.addEventListener('click', reloadPage);
 }
 
 function addingEventsCharacter() {
+    const reload = document.querySelector('#reload');
     const goodButton = document.getElementById('good');
     const badButton = document.getElementById('bad');
 
@@ -69,7 +72,7 @@ function addingEventsCharacter() {
         })
 
     } else {
-        container.innerHTML = 'tutaj wrzuciłem ten patent' + generateContainerLastMessage('newStart');
+        container.innerHTML = generateContainerLastMessage('newStart');
     }
     const newStart = document.getElementById('newStart');
 
@@ -80,11 +83,14 @@ function addingEventsCharacter() {
         container.innerHTML = createdHTML + restartButtonCharacter;
         addingEventsCharacter();
     })
+    reload.addEventListener('click', reloadPage);
 }
 
 function addingEventsMath() {
+    const reload = document.querySelector('#reload');
     const selecting = document.getElementById('result');
     const submit = document.querySelector('#submit');
+    selecting.focus();
 
     if (countOfWords < questionCount) {
         submit.addEventListener('click', (event) => {
@@ -101,4 +107,12 @@ function addingEventsMath() {
     } else {
         container.innerHTML = generateContainerLastMessage('starter');
     }
+    const starter = document.getElementById('starter');
+    starter.addEventListener('click', () => {
+        getRandomEverything('math');
+        restartEverything();
+        container.innerHTML = createdHTML + restartButtonWord;
+        addingEventsMath();
+    });
+    reload.addEventListener('click', reloadPage);
 }

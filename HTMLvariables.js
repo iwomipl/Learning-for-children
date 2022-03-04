@@ -1,5 +1,5 @@
-const restartButtonWord = `<button type="submit" id="starter">Od Nowa</button>`;
-const restartButtonCharacter = `<button type="submit" id="newStart">Od Nowa</button>`;
+const restartButtonWord = `<button type="submit" id="reload">Wybierz inną dziedzinę</button><button type="submit" id="starter">Zacznij zadanie od nowa</button>`;
+const restartButtonCharacter = `<button type="submit" id="reload">Wybierz inną dziedzinę</button><button type="submit" id="newStart">Zacznij zadanie od nowa</button>`;
 
 let myPointsGeneratorStart = `<div id="sidebar">`;
 let myPointsGeneratorEnd = `</div>`;

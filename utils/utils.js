@@ -1,4 +1,6 @@
-
+function reloadPage() {
+    window.location.reload();
+}
 
 function getRandomNumber(number) {
     return Math.floor(Math.random() * number);
@@ -72,7 +74,7 @@ function checkifAwnserIsRigthMath(awnser) {
         }
     } else {
         countOfWords++;
-        addedParagraph.push(`<p class="wrong">${awnser} to zły wynik działania<strong>${mathNumber1} ${mathSign} ${mathNumber2}</strong>, dobry wynik to ${mathResult}</p>`);
+        addedParagraph.push(`<p class="wrong">${awnser} to zły wynik działania<strong> ${mathNumber1} ${mathSign} ${mathNumber2}</strong>, dobry wynik to ${mathResult}</p>`);
         if (addedParagraph.length > maxParagraphLength) {
             addedParagraph.shift();
         }
