@@ -22,7 +22,7 @@ const generatedHTMLCharacterEnd = `</h1></div>
     <button value="good" id="good">Dobrze</button>
     <button value="bad" id="bad">Źle</button></div>`;
 
-const generatedHTMLMathStart = `<div id=""headerDiv"><h1 id="word">`;
+const generatedHTMLMathStart = `<div id=""headerDiv"><h1 id="numbers">`;
 const generatedHTMLMathEnd = `</h1></div>
 <form>
 <label>Jaki jest wynik tego działania?</label></br>

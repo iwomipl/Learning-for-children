@@ -110,7 +110,7 @@ function leftToAwnser() {
 
 function mathSwitch() {
     const randNum = getRandomNumber(5);
-    mathNumber1 = getRandomNumber(9);
+    mathNumber1 = getRandomNumber(numAToRandomMath);
     mathNumber2 = getRandomNumber(9);
 
     switch (randNum) {
@@ -137,7 +137,7 @@ function substract() {
     if (mathNumber1 >= mathNumber2) {
         return mathNumber1 - mathNumber2;
     } else {
-        mathNumber1 = getRandomNumber(9);
+        mathNumber1 = getRandomNumber(numAToRandomMath);
         mathNumber2 = getRandomNumber(9);
         return substract()
     }
@@ -147,7 +147,7 @@ function multiply() {
     if (mathNumber1 !== 0 && mathNumber2 !== 0) {
         return mathNumber1 * mathNumber2;
     } else {
-        mathNumber1 = getRandomNumber(9);
+        mathNumber1 = getRandomNumber(numAToRandomMath);
         mathNumber2 = getRandomNumber(9);
         return multiply();
     }
@@ -157,7 +157,7 @@ function divide() {
         mathNumber1 = mathNumber1 * mathNumber2;
         return mathNumber1 / mathNumber2;
     } else if (mathNumber1 === 0) {
-        mathNumber1 = getRandomNumber(9);
+        mathNumber1 = getRandomNumber(numAToRandomMath);
         mathNumber2 = getRandomNumber(9);
         return divide();
     } else {

@@ -11,3 +11,4 @@ let mathNumber1;
 let mathNumber2;
 let mathResult;
 let mathSign;
+let numAToRandomMath = 15;

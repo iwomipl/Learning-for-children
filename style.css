@@ -141,3 +141,24 @@ p{
 #newStart {
     bottom: 0;
 }
+#numbers{
+    vertical-align: bottom;
+    font-size: 180px;
+    margin-block-start: 10px;
+    margin-block-end: 10px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    height: 225px;
+    color: rgb(184, 22, 49);
+}
+#result{
+    font-size: 3rem;
+    width: 200px;
+    text-align: center;
+
+}
+#result::-webkit-inner-spin-button{
+    display: none;
+    -webkit-appearance: none;
+}
