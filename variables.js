@@ -4,7 +4,7 @@ let points = 0;
 let countOfAnswers = 0;
 let createdHTML = '';
 let addedParagraph = [];
-const maxParagraphLength = 25;
+const maxParagraphLength = 20;
 let switchCharacterOptions = 7;
 let maxMath = 5;
 let mathNumber1;

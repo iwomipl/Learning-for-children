@@ -22,8 +22,6 @@ math.addEventListener('click', () => {
 });
 
 function addingEventsSpeach() {
-    const word = document.querySelector('#word');
-    const reload = document.querySelector('#reload');
     const selecting = document.getElementById('selecting');
     const submit = document.querySelector('#submit');
 
@@ -31,8 +29,7 @@ function addingEventsSpeach() {
     if (countOfAnswers < questionCount) {
         submit.addEventListener('click', () => {
             checkifAwnserIsRigth(selecting.value);
-            getRandomEverything(leadField);
-            container.innerHTML = `${generateSidebar()}`;
+            getAndShowEverythingWithSidebar();
             addingEventsSpeach();
         })
     } else {
@@ -40,11 +37,10 @@ function addingEventsSpeach() {
     }
     const starter = document.getElementById(leadField);
     starter.addEventListener('click', () => {
-        getRandomEverything(leadField);
         restartEverything();
-        container.innerHTML = createdHTML + restartButtonWord;
         addingEventsSpeach();
     });
+    const reload = document.querySelector('#reload');
     reload.addEventListener('click', reloadPage);
 }
 
@@ -57,29 +53,21 @@ function addingEventsCharacter() {
         goodButton.addEventListener('click', () => {
             points++;
             countOfAnswers++;
-            getRandomEverything(leadField);
-            container.innerHTML = generateSidebarSpeech();
+            getAndShowEverythingWithSidebar();
             addingEventsCharacter();
         })
         badButton.addEventListener('click', () => {
-            getRandomEverything(leadField);
             countOfAnswers++;
-            container.innerHTML = generateSidebarSpeech();
+            getAndShowEverythingWithSidebar();
             addingEventsCharacter();
         })
 
     } else {
         container.innerHTML = generateContainerLastMessage(leadField);
     }
-    const newStart = document.getElementById(leadField);
-    console.log(leadField);
-    console.log(newStart);
-
-    newStart.addEventListener('click', () => {
-        getRandomEverything(leadField);
-        points = 0;
-        countOfAnswers = 0;
-        container.innerHTML = createdHTML + restartButtonCharacter;
+    const starter = document.getElementById(leadField);
+    starter.addEventListener('click', () => {
+        restartEverything();
         addingEventsCharacter();
     })
     reload.addEventListener('click', reloadPage);
@@ -98,8 +86,7 @@ function addingEventsMath() {
             }
 
             checkifAwnserIsRigthMath(Number(selecting.value));
-            getRandomEverything(leadField);
-            container.innerHTML = `${generateSidebarMath()}`;
+            getAndShowEverythingWithSidebar();
             addingEventsMath();
 
         })
@@ -108,34 +95,19 @@ function addingEventsMath() {
     }
     const starter = document.getElementById(leadField);
     starter.addEventListener('click', () => {
-        getRandomEverything(leadField);
         restartEverything();
-        container.innerHTML = createdHTML + restartButtonMath;
         addingEventsMath();
     });
     reload.addEventListener('click', reloadPage);
 }
 
 function difficultyEventListener() {
-    // const veryEasy = document.getElementById('very-easy');
-    // const easy = document.getElementById('easy');
-    // const normal = document.getElementById('normal');
-    // const hard = document.getElementById('hard');
-    // const veryHard = document.getElementById('very-hard');
     const difficultyLevelClass = document.querySelectorAll('.difficulty');
 
-
     difficultyLevelClass.forEach(obj => {
-        console.log('forEach');
-        eventAdder(obj);
+        obj.addEventListener('click', () => {
+            setDifficultyLevel(obj.id);
+            switchToNextPropperField();
+        })
     });
-}
-
-function eventAdder(obj) {
-    obj.addEventListener('click', () => {
-        console.log('przed set Diff');
-        setDifficultyLevel(obj.id);
-        console.log('po setDif');
-        switchToNextPropperField();
-    })
 }

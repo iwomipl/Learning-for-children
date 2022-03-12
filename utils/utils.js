@@ -98,6 +98,7 @@ function restartEverything() {
     points = 0;
     countOfAnswers = 0;
     addedParagraph = [];
+    getAndShowEverything();
 }
 
 function getPercent(rightAwnsers, awnsers) {
@@ -174,31 +175,31 @@ function setDifficultyLevel(difficultyLevel) {
             maxMath = 1;
             numAToRandomMath = 3;
             questionCount = 15;
-            switchCharacterOptions = 0;
+            switchCharacterOptions = 1;
             return;
         case 'easy':
             maxMath = 2;
             numAToRandomMath = 5;
             questionCount = 20;
-            switchCharacterOptions = 1;
+            switchCharacterOptions = 2;
             return;
         case 'normal':
             maxMath = 3;
             numAToRandomMath = 10;
             questionCount = 25;
-            switchCharacterOptions = 2;
+            switchCharacterOptions = 3;
             return;
         case 'hard':
             maxMath = 4;
             numAToRandomMath = 15;
             questionCount = 50;
-            switchCharacterOptions = 3;
+            switchCharacterOptions = 4;
             return;
         case 'hardest':
             maxMath = 5;
             numAToRandomMath = 20;
             questionCount = (leadField === 'reading') ? 50 : 75;
-            switchCharacterOptions = 4;
+            switchCharacterOptions = 5;
             return;
     }
 }
@@ -207,20 +208,26 @@ function switchToNextPropperField() {
     const container = document.querySelector('main');
     switch (leadField) {
         case 'speach':
-            difficultyEventListener();
-            getRandomEverything(leadField);
-            container.innerHTML = createdHTML + restartButtonWord;
+            getAndShowEverything();
             addingEventsSpeach();
             break;
         case 'reading':
-            getRandomEverything(leadField);
-            container.innerHTML = createdHTML + restartButtonCharacter;
+            getAndShowEverything();
             addingEventsCharacter();
             break;
         case 'math':
-            getRandomEverything(leadField);
-            container.innerHTML = createdHTML + restartButtonMath;
+            getAndShowEverything();
             addingEventsMath();
             break;
     }
+}
+
+const getAndShowEverything = () => {
+    getRandomEverything(leadField);
+    container.innerHTML = createdHTML + restartButton();
+}
+
+const getAndShowEverythingWithSidebar = () => {
+    getRandomEverything(leadField);
+    container.innerHTML = generateSidebar();
 }

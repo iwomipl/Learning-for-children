@@ -1,3 +1,11 @@
+function restartButton() {
+    return `<button type="submit" id="reload">Wybierz inną dziedzinę</button><button type="submit" id="${leadField}">Zacznij zadanie od nowa</button>`;
+}
+
+function lastMessageMiddle(string) {
+    return `%</h3><h1>Wołaj Ojczulka</h1><button type="submit" id="${string}">lub zacznij od nowa</button><div id="sidebar">`;
+}
+
 function createHTML(word) {
     const generatedHTML = `${generatedHTMLStart}${word}${generatedHTMLEnd}`;
     return generatedHTML;
@@ -23,14 +31,7 @@ ${leftToAwnser() ? `<h3>Pytań do końca: <strong>${leftToAwnser()}</strong> </h
 }
 
 function generateSidebar() {
-    return myPointsGeneratorStart + ((addedParagraph.join('')) ? addedParagraph.join('') : '') + myPointsGeneratorEnd + createdHTML + finisherHeader() + restartButtonWord;
-}
-function generateSidebarMath() {
-    return myPointsGeneratorStart + ((addedParagraph.join('')) ? addedParagraph.join('') : '') + myPointsGeneratorEnd + createdHTML + finisherHeader() + restartButtonMath;
-}
-
-function generateSidebarSpeech() {
-    return createdHTML + '<div>Zebraliście dotąd: <strong>' + points + '</strong> punktów</div>' + '<div>Liczba prób: <strong>' + countOfAnswers + '</strong>' + `<h3>Procent dobrych odpowiedzi: <strong>${getPercent(points, countOfAnswers)}</strong>%</h3><h3>Pytań do końca: <strong>${leftToAwnser()}</strong> </h3></div>` + restartButtonCharacter;
+    return myPointsGeneratorStart + ((addedParagraph.join('')) ? addedParagraph.join('') : '') + myPointsGeneratorEnd + createdHTML + finisherHeader() + restartButton();
 }
 function generateContainerLastMessage(variableNameString) {
     return `${lastMessageStart}${getPercent(points, countOfAnswers)}${lastMessageMiddle(variableNameString)}${addedParagraph.join('')}</div>`;
@@ -44,3 +45,4 @@ function difficultyLevelHtmlGenerator() {
     <button type="submit" id="hard" name="${leadField}" class="difficulty">Trudny</button>
     <button type="submit" id="hardest" name="${leadField}" class="difficulty">Najtrudniejszy</button>`;
 }
+

@@ -1,7 +1,3 @@
-const restartButtonWord = `<button type="submit" id="reload">Wybierz inną dziedzinę</button><button type="submit" id="speach">Zacznij zadanie od nowa</button>`;
-const restartButtonCharacter = `<button type="submit" id="reload">Wybierz inną dziedzinę</button><button type="submit" id="reading">Zacznij zadanie od nowa</button>`;
-const restartButtonMath = `<button type="submit" id="reload">Wybierz inną dziedzinę</button><button type="submit" id="math">Zacznij zadanie od nowa</button>`;
-
 let myPointsGeneratorStart = `<div id="sidebar">`;
 let myPointsGeneratorEnd = `</div>`;
 
@@ -32,6 +28,3 @@ const generatedHTMLMathEnd = `</h1></div>
 </form></br></hr>`;
 
 const lastMessageStart = `<h3>Skończyłeś test, Twój wynik to `;
-function lastMessageMiddle(string) {
-    return `%</h3><h1>Wołaj Ojczulka</h1><button type="submit" id="${string}">lub zacznij od nowa</button><div id="sidebar">`;
-}
