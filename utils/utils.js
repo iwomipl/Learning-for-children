@@ -45,7 +45,7 @@ function checkifAwnserIsRigth(awnser) {
 
     if (awnser === tempObj.typeOfWord) {
         points++;
-        countOfWords++;
+        countOfAnswers++;
         if (tempObj.randomWord !== undefined) {
             addedParagraph.push(`<p class="right">${tempObj.randomWord} to <strong>${tempObj.typeOfWord}</strong></p>`);
         }
@@ -53,7 +53,7 @@ function checkifAwnserIsRigth(awnser) {
             addedParagraph.shift();
         }
     } else {
-        countOfWords++;
+        countOfAnswers++;
         addedParagraph.push(`<p class="wrong">${tempObj.randomWord} to <strong>${tempObj.typeOfWord}</strong>${(awnser ? `, a nie ${awnser}.` : `.`)}</p>`);
         if (addedParagraph.length > maxParagraphLength) {
             addedParagraph.shift();
@@ -65,7 +65,7 @@ function checkifAwnserIsRigthMath(awnser) {
 
     if (awnser === mathResult) {
         points++;
-        countOfWords++;
+        countOfAnswers++;
         if (awnser !== undefined || !Number.isNaN(awnser)) {
             addedParagraph.push(`<p class="right">${awnser} to dobry wynik działania<strong> ${mathNumber1} ${mathSign} ${mathNumber2}</strong></p>`);
         }
@@ -73,7 +73,7 @@ function checkifAwnserIsRigthMath(awnser) {
             addedParagraph.shift();
         }
     } else {
-        countOfWords++;
+        countOfAnswers++;
         addedParagraph.push(`<p class="wrong">${awnser} to zły wynik działania<strong> ${mathNumber1} ${mathSign} ${mathNumber2}</strong>, dobry wynik to ${mathResult}</p>`);
         if (addedParagraph.length > maxParagraphLength) {
             addedParagraph.shift();
@@ -96,7 +96,7 @@ function getRandomEverything(keyWord) {
 
 function restartEverything() {
     points = 0;
-    countOfWords = 0;
+    countOfAnswers = 0;
     addedParagraph = [];
 }
 
@@ -106,14 +106,15 @@ function getPercent(rightAwnsers, awnsers) {
 }
 
 function leftToAwnser() {
-    return Math.floor(questionCount - countOfWords);
+    return Math.floor(questionCount - countOfAnswers);
 }
 
 function mathSwitch() {
-    const randNum = getRandomNumber(5);
+    const randNum = getRandomNumber(maxMath);
     mathNumber1 = getRandomNumber(numAToRandomMath);
     mathNumber2 = getRandomNumber(9);
 
+    console.log(randNum);
     switch (randNum) {
         case 0:
             mathResult = mathNumber1 + mathNumber2;
@@ -124,12 +125,12 @@ function mathSwitch() {
             mathSign = '-';
             return;
         case 2:
-            mathResult = divide();
-            mathSign = '/';
-            return;
-        default:
             mathResult = multiply();
             mathSign = '*';
+            return;
+        default:
+            mathResult = divide();
+            mathSign = '/';
             return;
     }
 }
@@ -164,5 +165,62 @@ function divide() {
     } else {
         mathNumber2 = getRandomNumber(9);
         return divide();
+    }
+}
+
+function setDifficultyLevel(difficultyLevel) {
+    switch (difficultyLevel) {
+        case 'easiest':
+            maxMath = 1;
+            numAToRandomMath = 3;
+            questionCount = 15;
+            switchCharacterOptions = 0;
+            return;
+        case 'easy':
+            maxMath = 2;
+            numAToRandomMath = 5;
+            questionCount = 20;
+            switchCharacterOptions = 1;
+            return;
+        case 'normal':
+            maxMath = 3;
+            numAToRandomMath = 10;
+            questionCount = 25;
+            switchCharacterOptions = 2;
+            return;
+        case 'hard':
+            maxMath = 4;
+            numAToRandomMath = 15;
+            questionCount = 50;
+            switchCharacterOptions = 3;
+            return;
+        case 'hardest':
+            maxMath = 5;
+            numAToRandomMath = 20;
+            questionCount = (leadField === 'reading') ? 50 : 75;
+            switchCharacterOptions = 4;
+            return;
+    }
+}
+
+function switchToNextPropperField() {
+    const container = document.querySelector('main');
+    switch (leadField) {
+        case 'speach':
+            difficultyEventListener();
+            getRandomEverything(leadField);
+            container.innerHTML = createdHTML + restartButtonWord;
+            addingEventsSpeach();
+            break;
+        case 'reading':
+            getRandomEverything(leadField);
+            container.innerHTML = createdHTML + restartButtonCharacter;
+            addingEventsCharacter();
+            break;
+        case 'math':
+            getRandomEverything(leadField);
+            container.innerHTML = createdHTML + restartButtonMath;
+            addingEventsMath();
+            break;
     }
 }

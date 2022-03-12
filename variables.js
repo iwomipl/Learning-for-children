@@ -1,14 +1,15 @@
 let questionCount = 25;
 let tempObj = {};
 let points = 0;
-let countOfWords = 0;
+let countOfAnswers = 0;
 let createdHTML = '';
 let addedParagraph = [];
 const maxParagraphLength = 25;
-const switchCharacterOptions = 7;
-const maxMath = 6;
+let switchCharacterOptions = 7;
+let maxMath = 5;
 let mathNumber1;
 let mathNumber2;
 let mathResult;
 let mathSign;
 let numAToRandomMath = 15;
+let leadField;

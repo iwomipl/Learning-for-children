@@ -1,52 +1,49 @@
 const container = document.querySelector('main');
-const speach = document.getElementById('starter');
+const speach = document.getElementById('speach');
 const reading = document.getElementById('reading');
 const math = document.getElementById('math');
 
-starter.addEventListener('click', () => {
-    getRandomEverything('speach');
-    questionCount = 25;
-    container.innerHTML = createdHTML + restartButtonWord;
-    addingEvents();
+speach.addEventListener('click', () => {
+    leadField = 'speach';
+    container.innerHTML = difficultyLevelHtmlGenerator(leadField);
+    difficultyEventListener();
 });
 
 reading.addEventListener('click', (event) => {
-    getRandomEverything('reading');
-    questionCount = 50;
-    container.innerHTML = createdHTML + restartButtonCharacter;
-    addingEventsCharacter();
+    leadField = 'reading';
+    container.innerHTML = difficultyLevelHtmlGenerator(leadField);
+    difficultyEventListener();
 });
 
 math.addEventListener('click', () => {
-    getRandomEverything('math');
-    questionCount = 25;
-    container.innerHTML = createdHTML + restartButtonMath;
-    addingEventsMath();
+    leadField = 'math';
+    container.innerHTML = difficultyLevelHtmlGenerator(leadField);
+    difficultyEventListener();
 });
 
-function addingEvents() {
+function addingEventsSpeach() {
     const word = document.querySelector('#word');
     const reload = document.querySelector('#reload');
     const selecting = document.getElementById('selecting');
     const submit = document.querySelector('#submit');
 
 
-    if (countOfWords < questionCount) {
-        submit.addEventListener('click', (event) => {
+    if (countOfAnswers < questionCount) {
+        submit.addEventListener('click', () => {
             checkifAwnserIsRigth(selecting.value);
-            getRandomEverything('speach');
+            getRandomEverything(leadField);
             container.innerHTML = `${generateSidebar()}`;
-            addingEvents();
+            addingEventsSpeach();
         })
     } else {
-        container.innerHTML = generateContainerLastMessage('speach');
+        container.innerHTML = generateContainerLastMessage(leadField);
     }
-    const starter = document.getElementById('speach');
+    const starter = document.getElementById(leadField);
     starter.addEventListener('click', () => {
-        getRandomEverything('speach');
+        getRandomEverything(leadField);
         restartEverything();
         container.innerHTML = createdHTML + restartButtonWord;
-        addingEvents();
+        addingEventsSpeach();
     });
     reload.addEventListener('click', reloadPage);
 }
@@ -56,30 +53,32 @@ function addingEventsCharacter() {
     const goodButton = document.getElementById('good');
     const badButton = document.getElementById('bad');
 
-    if (countOfWords < questionCount) {
+    if (countOfAnswers < questionCount) {
         goodButton.addEventListener('click', () => {
             points++;
-            countOfWords++;
-            getRandomEverything('reading');
+            countOfAnswers++;
+            getRandomEverything(leadField);
             container.innerHTML = generateSidebarSpeech();
             addingEventsCharacter();
         })
         badButton.addEventListener('click', () => {
-            getRandomEverything('reading');
-            countOfWords++;
+            getRandomEverything(leadField);
+            countOfAnswers++;
             container.innerHTML = generateSidebarSpeech();
             addingEventsCharacter();
         })
 
     } else {
-        container.innerHTML = generateContainerLastMessage('newStart');
+        container.innerHTML = generateContainerLastMessage(leadField);
     }
-    const newStart = document.getElementById('newStart');
+    const newStart = document.getElementById(leadField);
+    console.log(leadField);
+    console.log(newStart);
 
     newStart.addEventListener('click', () => {
-        getRandomEverything('reading');
+        getRandomEverything(leadField);
         points = 0;
-        countOfWords = 0;
+        countOfAnswers = 0;
         container.innerHTML = createdHTML + restartButtonCharacter;
         addingEventsCharacter();
     })
@@ -92,27 +91,51 @@ function addingEventsMath() {
     const submit = document.querySelector('#submit');
     selecting.focus();
 
-    if (countOfWords < questionCount) {
-        submit.addEventListener('click', (event) => {
+    if (countOfAnswers < questionCount) {
+        submit.addEventListener('click', () => {
             if (Number.isNaN(Number(selecting.value))) {
                 return Error;
             }
 
             checkifAwnserIsRigthMath(Number(selecting.value));
-            getRandomEverything('math');
+            getRandomEverything(leadField);
             container.innerHTML = `${generateSidebarMath()}`;
             addingEventsMath();
 
         })
     } else {
-        container.innerHTML = generateContainerLastMessage('math');
+        container.innerHTML = generateContainerLastMessage(leadField);
     }
-    const starter = document.getElementById('math');
+    const starter = document.getElementById(leadField);
     starter.addEventListener('click', () => {
-        getRandomEverything('math');
+        getRandomEverything(leadField);
         restartEverything();
         container.innerHTML = createdHTML + restartButtonMath;
         addingEventsMath();
     });
     reload.addEventListener('click', reloadPage);
+}
+
+function difficultyEventListener() {
+    // const veryEasy = document.getElementById('very-easy');
+    // const easy = document.getElementById('easy');
+    // const normal = document.getElementById('normal');
+    // const hard = document.getElementById('hard');
+    // const veryHard = document.getElementById('very-hard');
+    const difficultyLevelClass = document.querySelectorAll('.difficulty');
+
+
+    difficultyLevelClass.forEach(obj => {
+        console.log('forEach');
+        eventAdder(obj);
+    });
+}
+
+function eventAdder(obj) {
+    obj.addEventListener('click', () => {
+        console.log('przed set Diff');
+        setDifficultyLevel(obj.id);
+        console.log('po setDif');
+        switchToNextPropperField();
+    })
 }
