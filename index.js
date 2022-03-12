@@ -1,17 +1,17 @@
 const container = document.querySelector('main');
-const starter = document.getElementById('starter');
-const czytanie = document.getElementById('Czytanie');
+const speach = document.getElementById('starter');
+const reading = document.getElementById('reading');
 const math = document.getElementById('math');
 
 starter.addEventListener('click', () => {
-    getRandomEverything();
+    getRandomEverything('speach');
     questionCount = 25;
     container.innerHTML = createdHTML + restartButtonWord;
     addingEvents();
 });
 
-czytanie.addEventListener('click', (event) => {
-    getRandomEverything('Czytanie');
+reading.addEventListener('click', (event) => {
+    getRandomEverything('reading');
     questionCount = 50;
     container.innerHTML = createdHTML + restartButtonCharacter;
     addingEventsCharacter();
@@ -20,7 +20,7 @@ czytanie.addEventListener('click', (event) => {
 math.addEventListener('click', () => {
     getRandomEverything('math');
     questionCount = 25;
-    container.innerHTML = createdHTML + restartButtonWord;
+    container.innerHTML = createdHTML + restartButtonMath;
     addingEventsMath();
 });
 
@@ -34,16 +34,16 @@ function addingEvents() {
     if (countOfWords < questionCount) {
         submit.addEventListener('click', (event) => {
             checkifAwnserIsRigth(selecting.value);
-            getRandomEverything();
+            getRandomEverything('speach');
             container.innerHTML = `${generateSidebar()}`;
             addingEvents();
         })
     } else {
-        container.innerHTML = generateContainerLastMessage('starter');
+        container.innerHTML = generateContainerLastMessage('speach');
     }
-    const starter = document.getElementById('starter');
+    const starter = document.getElementById('speach');
     starter.addEventListener('click', () => {
-        getRandomEverything();
+        getRandomEverything('speach');
         restartEverything();
         container.innerHTML = createdHTML + restartButtonWord;
         addingEvents();
@@ -60,12 +60,12 @@ function addingEventsCharacter() {
         goodButton.addEventListener('click', () => {
             points++;
             countOfWords++;
-            getRandomEverything('Czytanie');
+            getRandomEverything('reading');
             container.innerHTML = generateSidebarSpeech();
             addingEventsCharacter();
         })
         badButton.addEventListener('click', () => {
-            getRandomEverything('Czytanie');
+            getRandomEverything('reading');
             countOfWords++;
             container.innerHTML = generateSidebarSpeech();
             addingEventsCharacter();
@@ -77,7 +77,7 @@ function addingEventsCharacter() {
     const newStart = document.getElementById('newStart');
 
     newStart.addEventListener('click', () => {
-        getRandomEverything('Czytanie');
+        getRandomEverything('reading');
         points = 0;
         countOfWords = 0;
         container.innerHTML = createdHTML + restartButtonCharacter;
@@ -100,18 +100,18 @@ function addingEventsMath() {
 
             checkifAwnserIsRigthMath(Number(selecting.value));
             getRandomEverything('math');
-            container.innerHTML = `${generateSidebar()}`;
+            container.innerHTML = `${generateSidebarMath()}`;
             addingEventsMath();
 
         })
     } else {
-        container.innerHTML = generateContainerLastMessage('starter');
+        container.innerHTML = generateContainerLastMessage('math');
     }
-    const starter = document.getElementById('starter');
+    const starter = document.getElementById('math');
     starter.addEventListener('click', () => {
         getRandomEverything('math');
         restartEverything();
-        container.innerHTML = createdHTML + restartButtonWord;
+        container.innerHTML = createdHTML + restartButtonMath;
         addingEventsMath();
     });
     reload.addEventListener('click', reloadPage);

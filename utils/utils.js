@@ -82,14 +82,13 @@ function checkifAwnserIsRigthMath(awnser) {
 }
 
 function getRandomEverything(keyWord) {
-    if (keyWord === 'Czytanie') {
+    if (keyWord === 'reading') {
         tempObj = getRandomCharacters();
         createdHTML = createHTMLCharacter(tempObj);
     } else if (keyWord === 'math') {
         tempObj = mathSwitch();
         createdHTML = createHTMLMath(tempObj);
-    }
-    else {
+    } else if (keyWord === 'speach') {
         tempObj = getRandomWord();
         createdHTML = createHTML(tempObj.randomWord);
     }

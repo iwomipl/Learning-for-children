@@ -25,6 +25,9 @@ ${leftToAwnser() ? `<h3>Pytań do końca: <strong>${leftToAwnser()}</strong> </h
 function generateSidebar() {
     return myPointsGeneratorStart + ((addedParagraph.join('')) ? addedParagraph.join('') : '') + myPointsGeneratorEnd + createdHTML + finisherHeader() + restartButtonWord;
 }
+function generateSidebarMath() {
+    return myPointsGeneratorStart + ((addedParagraph.join('')) ? addedParagraph.join('') : '') + myPointsGeneratorEnd + createdHTML + finisherHeader() + restartButtonMath;
+}
 
 function generateSidebarSpeech() {
     return createdHTML + '<div>Zebraliście dotąd: <strong>' + points + '</strong> punktów</div>' + '<div>Liczba prób: <strong>' + countOfWords + '</strong>' + `<h3>Procent dobrych odpowiedzi: <strong>${getPercent(points, countOfWords)}</strong>%</h3><h3>Pytań do końca: <strong>${leftToAwnser()}</strong> </h3></div>` + restartButtonCharacter;
