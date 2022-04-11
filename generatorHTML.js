@@ -21,7 +21,12 @@ function createHTMLMath() {
     return generatedHTML;
 }
 
-function finisherHeader() { 
+function createHTMLMemory() {
+    const generatedHTML = `<div class="memoryTable">${createTableFromTempObject()}</div>`;
+    return generatedHTML;
+}
+
+function finisherHeader() {
     return `
 <h3>Uzyskanych Punktów: <strong>${points}</strong></h3>
 <h3>Liczba prób: <strong>${countOfAnswers}</strong></h3>
@@ -44,5 +49,20 @@ function difficultyLevelHtmlGenerator() {
     <button type="submit" id="normal" name="${leadField}" class="difficulty">Normalny</button>
     <button type="submit" id="hard" name="${leadField}" class="difficulty">Trudny</button>
     <button type="submit" id="hardest" name="${leadField}" class="difficulty">Najtrudniejszy</button>`;
+}
+
+function createTableFromTempObject() {
+    if (memoryArray.length < 1) {
+        let tempArrayToHTML = [...tempObj, ...tempObj].sort(() => Math.random() - 0.5);
+        memoryArray = [...tempArrayToHTML];
+    }
+    const tableToHTML = memoryArray.map((element, index) => {
+        return `<div class="${isInGuessedMemoryArray(element) ? 'guessed' : 'notGuessed'}" id="${index}">${isInGuessedMemoryArray(element) ? element : ''}</div>`
+    })
+    return tableToHTML.join('');
+}
+
+function isInGuessedMemoryArray(checkedString) {
+    return guessedThingsInMemoryGame.includes(checkedString) ? true : false;
 }
 

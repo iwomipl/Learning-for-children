@@ -2,6 +2,7 @@ const container = document.querySelector('main');
 const speach = document.getElementById('speach');
 const reading = document.getElementById('reading');
 const math = document.getElementById('math');
+const memory = document.getElementById('memory');
 
 speach.addEventListener('click', () => {
     leadField = 'speach';
@@ -17,6 +18,11 @@ reading.addEventListener('click', (event) => {
 
 math.addEventListener('click', () => {
     leadField = 'math';
+    container.innerHTML = difficultyLevelHtmlGenerator(leadField);
+    difficultyEventListener();
+});
+memory.addEventListener('click', () => {
+    leadField = 'memory';
     container.innerHTML = difficultyLevelHtmlGenerator(leadField);
     difficultyEventListener();
 });
@@ -110,4 +116,38 @@ function difficultyEventListener() {
             switchToNextPropperField();
         })
     });
+}
+
+function memoryEventListener() {
+
+    for (let i = 0; i <= memoryArray.length - 1; i++) {
+        const mySquare = document.getElementById(`${i}`);
+
+        mySquare.addEventListener('click', (e) => {
+            if (memoryTwoElementsArray.length > 1) {
+                memoryTwoElementsArray.length = 0;
+                switchToNextPropperField();
+            } else if (checkTheWordInMemoryGame(e.target.id)) {
+                switchToNextPropperField();
+            } else {
+                memoryTwoElementsArray.push(memoryArray[e.target.id]);
+                mySquare.innerText = memoryArray[e.target.id];
+            }
+            //sprawdzić czy jest takie samo i ewentualnie dodać do guessedThingsInMemoryGame; 
+            //na koniec odkryć ten element
+
+        });
+    }
+}
+
+function checkTheWordInMemoryGame(id) {
+    //jeśli nie jest takie samo, zakryć ponownie dwa wejścia
+    if (memoryTwoElementsArray.length === 1) {
+        if (memoryArray[id] === memoryTwoElementsArray[0]) {
+            guessedThingsInMemoryGame.push(memoryArray[id]);
+            memoryTwoElementsArray.length = 0;
+            return true;
+        }
+    }
+    return false;
 }

@@ -41,6 +41,37 @@ function getRandomWord() {
     return fullObject;
 }
 
+function getRandomMemoryMatrix() {
+    const arrayOfWords = [];
+    if (matrixSize < 25) {
+        switchCharacterOptions = 5;
+        if (matrixSize < 17) {
+            switchCharacterOptions = 3;
+        }
+        //@TODO zlikwidować możliwość powtórzenia się liter, głosek
+        for (let i = 0; i < matrixSize / 2; i++) {
+            const randomWord = getRandomCharacters();
+            if (arrayOfWords.includes(randomWord)) {
+                i--;
+            } else {
+                arrayOfWords.push(randomWord);
+            }
+        }
+    } else {
+
+        for (let i = 0; i < matrixSize / 2; i++) {
+            const { randomWord } = getRandomWord();
+            if (arrayOfWords.includes(randomWord)) {
+                i--;
+            } else {
+                arrayOfWords.push(randomWord);
+            }
+        }
+    }
+
+    return arrayOfWords;
+}
+
 function checkifAwnserIsRigth(awnser) {
 
     if (awnser === tempObj.typeOfWord) {
@@ -91,6 +122,9 @@ function getRandomEverything(keyWord) {
     } else if (keyWord === 'speach') {
         tempObj = getRandomWord();
         createdHTML = createHTML(tempObj.randomWord);
+    } else if (keyWord === 'memory') {
+        tempObj = getRandomMemoryMatrix();
+        createdHTML = createHTMLMemory(tempObj.randomWord);
     }
 }
 
@@ -176,30 +210,35 @@ function setDifficultyLevel(difficultyLevel) {
             numAToRandomMath = 3;
             questionCount = 15;
             switchCharacterOptions = 1;
+            matrixSize = 8;
             return;
         case 'easy':
             maxMath = 2;
             numAToRandomMath = 5;
             questionCount = 20;
             switchCharacterOptions = 2;
+            matrixSize = 16;
             return;
         case 'normal':
             maxMath = 3;
             numAToRandomMath = 10;
             questionCount = 25;
             switchCharacterOptions = 3;
+            matrixSize = 24;
             return;
         case 'hard':
             maxMath = 4;
             numAToRandomMath = 15;
             questionCount = 50;
             switchCharacterOptions = 4;
+            matrixSize = 32;
             return;
         case 'hardest':
             maxMath = 5;
             numAToRandomMath = 20;
             questionCount = (leadField === 'reading') ? 50 : 75;
             switchCharacterOptions = 5;
+            matrixSize = 40;
             return;
     }
 }
@@ -218,6 +257,11 @@ function switchToNextPropperField() {
         case 'math':
             getAndShowEverything();
             addingEventsMath();
+            break;
+        case 'memory':
+            getAndShowEverything();
+            // addingEventsMemory();
+            memoryEventListener();
             break;
     }
 }
