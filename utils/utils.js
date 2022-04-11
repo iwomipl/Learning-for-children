@@ -48,7 +48,6 @@ function getRandomMemoryMatrix() {
         if (matrixSize < 17) {
             switchCharacterOptions = 3;
         }
-        //@TODO zlikwidować możliwość powtórzenia się liter, głosek
         for (let i = 0; i < matrixSize / 2; i++) {
             const randomWord = getRandomCharacters();
             if (arrayOfWords.includes(randomWord)) {
@@ -124,7 +123,7 @@ function getRandomEverything(keyWord) {
         createdHTML = createHTML(tempObj.randomWord);
     } else if (keyWord === 'memory') {
         tempObj = getRandomMemoryMatrix();
-        createdHTML = createHTMLMemory(tempObj.randomWord);
+        createdHTML = createHTMLMemory();
     }
 }
 
@@ -132,6 +131,11 @@ function restartEverything() {
     points = 0;
     countOfAnswers = 0;
     addedParagraph = [];
+    memoryArray = [];
+    guessedThingsInMemoryGame = [];
+    memoryTwoElementsArray = [];
+    lastIdToMemoryGame = '';
+    tempObj = {};
     getAndShowEverything();
 }
 
@@ -246,7 +250,7 @@ function setDifficultyLevel(difficultyLevel) {
 }
 
 function switchToNextPropperField() {
-    const container = document.querySelector('main');
+
     switch (leadField) {
         case 'speach':
             getAndShowEverything();
@@ -262,13 +266,13 @@ function switchToNextPropperField() {
             break;
         case 'memory':
             getAndShowEverything();
-            // addingEventsMemory();
             memoryEventListener();
             break;
     }
 }
 
 const getAndShowEverything = () => {
+    const container = document.querySelector('main');
     getRandomEverything(leadField);
     container.innerHTML = createdHTML + restartButton();
 }

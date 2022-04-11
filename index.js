@@ -21,6 +21,7 @@ math.addEventListener('click', () => {
     container.innerHTML = difficultyLevelHtmlGenerator(leadField);
     difficultyEventListener();
 });
+
 memory.addEventListener('click', () => {
     leadField = 'memory';
     container.innerHTML = difficultyLevelHtmlGenerator(leadField);
@@ -119,6 +120,8 @@ function difficultyEventListener() {
 }
 
 function memoryEventListener() {
+    const reload = document.querySelector('#reload');
+
 
     for (let i = 0; i <= memoryArray.length - 1; i++) {
         const mySquare = document.getElementById(`${i}`);
@@ -138,6 +141,13 @@ function memoryEventListener() {
 
         });
     }
+    const starter = document.getElementById(leadField);
+    starter.addEventListener('click', () => {
+        restartEverything();
+        switchToNextPropperField();
+        memoryEventListener();
+    });
+    reload.addEventListener('click', reloadPage);
 }
 
 function checkTheWordInMemoryGame(id) {

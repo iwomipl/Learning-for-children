@@ -225,4 +225,5 @@ p {
 .memoryTable .guessed {
     background-color: aliceblue;
     color: #1e90ff;
+    pointer-events: none;
 }
