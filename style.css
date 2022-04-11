@@ -211,8 +211,18 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 .memoryTable div:hover {
     box-shadow: 0 0 10px black, 0 0 10px black;
+}
+.guessed div {
+    background-color: aliceblue;
+    color: #1e90ff;
+}
+
+.memoryTable .guessed {
+    background-color: aliceblue;
+    color: #1e90ff;
 }

@@ -57,12 +57,16 @@ function createTableFromTempObject() {
         memoryArray = [...tempArrayToHTML];
     }
     const tableToHTML = memoryArray.map((element, index) => {
-        return `<div style="font-size: ${fontSize};" class="${isInGuessedMemoryArray(element) ? 'guessed' : 'notGuessed'}" id="${index}">${isInGuessedMemoryArray(element) ? element : ''}</div>`
+        return `<div ${checkIfTheFontIsChanging() ? `style="font-size: ${fontSize};"` : ''} ${isInGuessedMemoryArray(element) ? 'class="guessed"' : ''}" id="${index}">${isInGuessedMemoryArray(element) ? element : ''}</div>`
     })
     return tableToHTML.join('');
 }
 
 function isInGuessedMemoryArray(checkedString) {
     return guessedThingsInMemoryGame.includes(checkedString) ? true : false;
+}
+
+function checkIfTheFontIsChanging() {
+    return (fontSize === '1.3vw') ? true : false;
 }
 
