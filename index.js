@@ -124,7 +124,9 @@ function memoryEventListener() {
         const mySquare = document.getElementById(`${i}`);
 
         mySquare.addEventListener('click', (e) => {
-            if (memoryTwoElementsArray.length > 1) {
+            if (lastIdToMemoryGame === e.target.id) {
+                return;
+            } else if (memoryTwoElementsArray.length > 1) {
                 memoryTwoElementsArray.length = 0;
                 switchToNextPropperField();
             } else if (checkTheWordInMemoryGame(e.target.id)) {
@@ -133,21 +135,20 @@ function memoryEventListener() {
                 memoryTwoElementsArray.push(memoryArray[e.target.id]);
                 mySquare.innerText = memoryArray[e.target.id];
             }
-            //sprawdzić czy jest takie samo i ewentualnie dodać do guessedThingsInMemoryGame; 
-            //na koniec odkryć ten element
 
         });
     }
 }
 
 function checkTheWordInMemoryGame(id) {
-    //jeśli nie jest takie samo, zakryć ponownie dwa wejścia
     if (memoryTwoElementsArray.length === 1) {
         if (memoryArray[id] === memoryTwoElementsArray[0]) {
             guessedThingsInMemoryGame.push(memoryArray[id]);
             memoryTwoElementsArray.length = 0;
+            lastIdToMemoryGame = id;
             return true;
         }
     }
+    lastIdToMemoryGame = id;
     return false;
 }

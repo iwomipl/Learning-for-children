@@ -17,4 +17,5 @@ let mathSign;
 let numAToRandomMath = 15;
 let leadField;
 let matrixSize;
-let fontSize = ';'
+let fontSize = '';
+let lastIdToMemoryGame = '';
