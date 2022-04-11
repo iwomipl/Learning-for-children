@@ -232,6 +232,7 @@ function setDifficultyLevel(difficultyLevel) {
             questionCount = 50;
             switchCharacterOptions = 4;
             matrixSize = 32;
+            fontSize = '1.5vw';
             return;
         case 'hardest':
             maxMath = 5;
@@ -239,6 +240,7 @@ function setDifficultyLevel(difficultyLevel) {
             questionCount = (leadField === 'reading') ? 50 : 75;
             switchCharacterOptions = 5;
             matrixSize = 40;
+            fontSize = '1.5vw';
             return;
     }
 }

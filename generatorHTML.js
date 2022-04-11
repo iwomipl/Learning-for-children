@@ -57,7 +57,7 @@ function createTableFromTempObject() {
         memoryArray = [...tempArrayToHTML];
     }
     const tableToHTML = memoryArray.map((element, index) => {
-        return `<div class="${isInGuessedMemoryArray(element) ? 'guessed' : 'notGuessed'}" id="${index}">${isInGuessedMemoryArray(element) ? element : ''}</div>`
+        return `<div style="font-size: ${fontSize};" class="${isInGuessedMemoryArray(element) ? 'guessed' : 'notGuessed'}" id="${index}">${isInGuessedMemoryArray(element) ? element : ''}</div>`
     })
     return tableToHTML.join('');
 }

@@ -194,19 +194,23 @@ p {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     padding: 10px;
     text-align: center;
+    justify-items: center;
+    align-items: center;
 }
 
 .memoryTable div {
-    height: 100px;
-    width: 150px;
-    padding: 15px;
-    margin: 15px;
+    min-height: 12vh;
+    width: 10vw;
+    padding: auto;
+    margin: 5px;
     border: #1e90ff 1px solid;
     background-color: #1e90ff;
     border-radius: 5px;
-    font-size: 3rem;
-    font-size: 10vw;
+    font-size: 3vw;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .memoryTable div:hover {
