@@ -3,7 +3,16 @@ const speach = document.getElementById('speach');
 const reading = document.getElementById('reading');
 const math = document.getElementById('math');
 const memory = document.getElementById('memory');
+const divAndSubs = document.getElementById('divAndSubs');
+const multiplication = document.getElementById('multiDivid');
 
+function parse(str) {
+    return Function(`'use strict'; return (${str})`)()
+}
+a = 1;
+b = 2;
+c = 3;
+str = `${b}+(${c}/${b}+${a})`;
 speach.addEventListener('click', () => {
     leadField = 'speach';
     container.innerHTML = difficultyLevelHtmlGenerator(leadField);
@@ -24,6 +33,18 @@ math.addEventListener('click', () => {
 
 memory.addEventListener('click', () => {
     leadField = 'memory';
+    container.innerHTML = difficultyLevelHtmlGenerator(leadField);
+    difficultyEventListener();
+});
+
+divAndSubs.addEventListener('click', () => {
+    leadField = 'divAndSubs';
+    container.innerHTML = difficultyLevelHtmlGenerator(leadField);
+    difficultyEventListener();
+});
+
+multiplication.addEventListener('click', () => {
+    leadField = 'multiDivid';
     container.innerHTML = difficultyLevelHtmlGenerator(leadField);
     difficultyEventListener();
 });
@@ -104,6 +125,62 @@ function addingEventsMath() {
     starter.addEventListener('click', () => {
         restartEverything();
         addingEventsMath();
+    });
+    reload.addEventListener('click', reloadPage);
+}
+
+function addingEventsDivAndSubs() {
+    const reload = document.querySelector('#reload');
+    const selecting = document.getElementById('result');
+    const submit = document.querySelector('#submit');
+    selecting.focus();
+
+    if (countOfAnswers < questionCount) {
+        submit.addEventListener('click', () => {
+            if (Number.isNaN(Number(selecting.value))) {
+                return Error;
+            }
+
+            checkifAwnserIsRigthMath(Number(selecting.value));
+            getAndShowEverythingWithSidebar();
+            addingEventsDivAndSubs();
+
+        })
+    } else {
+        container.innerHTML = generateContainerLastMessage(leadField);
+    }
+    const starter = document.getElementById(leadField);
+    starter.addEventListener('click', () => {
+        restartEverything();
+        addingEventsDivAndSubs();
+    });
+    reload.addEventListener('click', reloadPage);
+}
+
+function addingEventsMultiplication() {
+    const reload = document.querySelector('#reload');
+    const selecting = document.getElementById('result');
+    const submit = document.querySelector('#submit');
+    selecting.focus();
+
+    if (countOfAnswers < questionCount) {
+        submit.addEventListener('click', () => {
+            if (Number.isNaN(Number(selecting.value))) {
+                return Error;
+            }
+
+            checkifAwnserIsRigthMath(Number(selecting.value));
+            getAndShowEverythingWithSidebar();
+            addingEventsMultiplication();
+
+        })
+    } else {
+        container.innerHTML = generateContainerLastMessage(leadField);
+    }
+    const starter = document.getElementById(leadField);
+    starter.addEventListener('click', () => {
+        restartEverything();
+        addingEventsMultiplication();
     });
     reload.addEventListener('click', reloadPage);
 }

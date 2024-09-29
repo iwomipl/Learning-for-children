@@ -8,6 +8,7 @@ const generatedHTMLEnd = `</h1></div>
 <select id="selecting" size="3">
     <option value="rzeczownik">rzeczownik</option>
     <option value="czasownik">czasownik</option>
+    <option value="przysłówek">przysłówek</option>
     <option value="przymiotnik">przymiotnik</option>
 </select></br>
 <button id="submit">Wyślij</button>

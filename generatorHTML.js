@@ -17,7 +17,8 @@ function createHTMLCharacter(character) {
 }
 
 function createHTMLMath() {
-    const generatedHTML = `${generatedHTMLMathStart} ${mathNumber1} ${mathSign} ${mathNumber2}${generatedHTMLMathEnd}`;
+const generatedHTML = `${generatedHTMLMathStart} ${mathEquation}${generatedHTMLMathEnd}`;
+    // const generatedHTML = `${generatedHTMLMathStart} ${mathNumber1} ${mathSign} ${mathNumber2}${generatedHTMLMathEnd}`;
     return generatedHTML;
 }
 
@@ -69,4 +70,3 @@ function isInGuessedMemoryArray(checkedString) {
 function checkIfTheFontIsChanging() {
     return (fontSize === '1.3vw') ? true : false;
 }
-
